@@ -265,24 +265,28 @@
         <h2 class="title is-3">Introduction</h2>
         <div class="content has-text-justified">
           <p>
-            Answering questions with Chain-of-Thought (CoT) has significantly enhanced the reasoning capabilities of Large Language Models (LLMs), yet its impact on Large Multimodal Models (LMMs) still lacks a systematic assessment and in-depth investigation. 
+            With the rapid progress in artificial intelligence and deep learning, methodological advances in single-cell analysis have undergone a notable shift from traditional statistical techniques to specialized deep learning models, and more recently, to pre-trained foundation models. While these developments have led to significant improvements in performance and scalability, several inherent limitations remain unresolved: 
+            <b>(1)<b> </b>Lack of Unification.<b> For different types of omics data and downstream tasks, existing paradigms typically require separately designed models, lacking a unified approach capable of simultaneously handling multi-omics and multi-task scenarios. 
+            <b>(2)<b> </b>Limited User-Friendliness.<b> Effective application of these methods to single-cell analysis often necessitates domain expertise in biology as well as proficiency in programming. Furthermore, the lack of user-centric interaction design in current models poses a significant barrier to adoption by non-expert users. 
+            <b>(3)<b> </b>Poor Interpretability.<b> Most of the existing data-driven black-box models directly learn the mapping from input (e.g., gene expression) to output (e.g., cell type information), without incorporating interpretable intermediate steps. As a result, users are often unable to understand the rationale behind the model's decisions. To this end, we seek to establish a unified, user-friendly, and interpretable paradigm for single-cell analysis.
+          </p>
+          <div class="content has-text-centered">
+            <img src="static/images/intro/fig_illus.png" alt="grade-lv" width="95%"/>
+            <p>An illustration of traditional single-cell analysis and language-centric single-cell analysis.</p>
+          </div>
+          <p>
+            Specifically, we introduce CellVerse, a unified language-centric benchmark dataset for evaluating the capabilities of LLMs in single-cell analysis. We begin by curating five sub-datasets spanning four types of single-cell multi-omics data (scRNA-seq, CITE-seq, ASAP-seq, and scATAC-seq data) and translate them into natural languages. Subsequently, we select three most representative single-cell analysis tasks—cell type annotation (cell-level), drug response prediction (drug-level), and perturbation analysis (gene-level)—and reformulate them as question-answering (QA) problems by integrating each with the natural language-formatted single-cell data. 
+            Next, we conduct a comprehensive and systematic evaluation of 14 advanced LLMs on CellVerse. The evaluated models include open-source LLMs such as C2S-Pythia (160M, 410M, and 1B), Qwen-2.5 (7B, 32B, and 72B),Llama-3.3-70B, and DeepSeek (V3 and R1), as well as closed-source models including GPT-4, GPT-4o-mini, GPT-4o, GPT-4.1-mini, and GPT-4.1. 
           </p>
           <p>
-            In this paper, we introduce <b>MME-CoT</b> , a specialized benchmark evaluating the CoT reasoning performance of LMMs, <b>spanning six domains</b>: math, science, OCR, logic, space-time, and general scenes. As the first comprehensive study in this area, we propose a <b>thorough evaluation suite</b> incorporating <b>three novel metrics</b> that assess the reasoning <b>quality</b>, <b>robustness</b>, and <b>efficiency</b> at a fine-grained level.
-          </p>
-          <p>
-            Leveraging curated high-quality data and a unique evaluation strategy, we conduct an in-depth analysis of state-of-the-art LMMs, uncovering <b>several key insights</b>:
-            <b>(1)</b> <b>Models with reflection mechanism demonstrate a superior CoT quality</b>, with Kimi k1.5 outperforming GPT-4o and demonstrating the highest quality results;
-            <b>(2)</b> <b>CoT prompting often degrades LMM performance on perception-heavy tasks</b>, suggesting a potentially harmful overthinking behavior;
-            <b>(3)</b> <b>Although the CoT quality is high, LMMs with reflection exhibit significant inefficiency in both normal response and self-correction phases</b>.
-            We hope MME-CoT serves as a foundation for advancing multimodal reasoning in LMMs.
+            Through this large-scale empirical assessment, we uncover <b>several key insights</b>:
+            <b>(1)</b> <b>Generalist</b> models perform better than <b>specialist</b> models;
+            <b>(2)</b> <b>LLM performance </b>scales</b> with </b>model size</b>;
+            <b>(3)</b> <b>Current LLMs demonstrate </b>limited understanding of cell biology</b>;
+            <b>(4)</b> <b>Error profiles<b> vary across <b>tasks</b>.
           </p>
         </div>
       </div>
-    </div>
-    <div class="content has-text-centered">
-      <img src="static/images/overview_mv/image/radar.jpg" alt="grade-lv" width="40%"/>
-      <p>Chain-of-Thought Performance of Leading LMMs on <span class="mathvista">MME-CoT</span>.</p>
     </div>
 </div>
 </section>
@@ -299,204 +303,220 @@
               <tr>
                 <th rowspan="2" style="vertical-align: middle;"><strong>#</strong></th>
                 <th rowspan="2" style="vertical-align: middle;"><strong>Model</strong></th>
-                <th colspan="3" style="vertical-align: middle;"><strong>CoT Quality</strong></th>
-                <th colspan="3" style="vertical-align: middle;"><strong>CoT Robustness</strong></th>
-                <th colspan="3" style="vertical-align: middle;"><strong>CoT Efficiency</strong></th>
+                <th colspan="2" style="vertical-align: middle;"><strong>CTA (scRNA-seq)</strong></th>
+                <th colspan="2" style="vertical-align: middle;"><strong>CTA (CITE-seq)</strong></th>
+                <th colspan="2" style="vertical-align: middle;"><strong>CTA (ASAP-seq)</strong></th>
+                <th colspan="2" style="vertical-align: middle;"><strong>DRP</strong></th>
+                <th colspan="2" style="vertical-align: middle;"><strong>PSA</strong></th>
+                <th colspan="2" style="vertical-align: middle;"><strong>PDA</strong></th>
               </tr>
               <tr>
-                <th><strong><u>F1 Score</u></strong></th>
-                <th><strong>Precision</strong></th>
-                <th><strong>Recall</strong></th>
-                <th><strong><u>Avg. Score</u></strong></th>
-                <th><strong>Stability</strong></th>
-                <th><strong>Efficacy</strong></th>
-                <th><strong><u>Avg. Score</u></strong></th>
-                <th><strong>Relevance Rate</strong></th>
-                <th><strong>Reflection Quality</strong></th>
+                <th><strong>Accuracy</strong></th>
+                <th><strong>F1 Score</strong></th>
+                <th><strong>Accuracy</strong></th>
+                <th><strong>F1 Score</strong></th>
+                <th><strong>Accuracy</strong></th>
+                <th><strong>F1 Score</strong></th>
+                <th><strong>Accuracy</strong></th>
+                <th><strong>F1 Score</strong></th>
+                <th><strong>Accuracy</strong></th>
+                <th><strong>F1 Score</strong></th>
+                <th><strong>Accuracy</strong></th>
+                <th><strong>F1 Score</strong></th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td>1</td>
-                <td><b class="best-score-text">Kimi k1.5 🥇</b></td>
-                <td><b>64.2</b></td>
-                <td>92.0</td>
-                <td>49.3</td>
-                <td><b>1.4</b></td>
-                <td>2.9</td>
-                <td>0.0</td>
-                <td><b>82.2</b></td>
-                <td>92.2</td>
-                <td>72.2</td>
+                <td><b class="best-score-text">DeepSeek-R1 🥇</b></td>
+                <td>42.38</td>
+                <td>33.40</td>
+                <td>58.29</td>
+                <td>50.76</td>
+                <td>28.00</td>
+                <td>20.81</td>
+                <td>50.00</td>
+                <td>33.33</td>
+                <td>76.67</td>
+                <td>58.00</td>
+                <td>62.96</td>
+                <td>57.07</td>
               </tr>
               <tr>
                 <td>2</td>
-                <td><b class="best-score-text">GPT-4o 🥈</b></td>
-                <td><b>64.0</b></td>
-                <td>85.4</td>
-                <td>51.2</td>
-                <td><b>2.1</b></td>
-                <td>-1.0</td>
-                <td>5.1</td>
-                <td><b>96.0</b></td>
-                <td>92.0</td>
-                <td>100.0</td>
+                <td><b class="best-score-text">GPT-4.1-mini 🥈</b></td>
+                <td>40.51</td>
+                <td>34.55</td>
+                <td>59.14</td>
+                <td>58.04</td>
+                <td>29.33</td>
+                <td>27.47</td>
+                <td>55.00</td>
+                <td>48.19</td>
+                <td>68.33</td>
+                <td>27.61</td>
+                <td>61.11</td>
+                <td>41.63</td>
               </tr>
               <tr>
                 <td>3</td>
-                <td><b class="best-score-text">QVQ-72B 🥉</b></td>
-                <td><b>62.0</b></td>
-                <td>80.2</td>
-                <td>50.5</td>
-                <td><b>-1.8</b></td>
-                <td>-3.1</td>
-                <td>-0.4</td>
-                <td><b>67.9</b></td>
-                <td>83.7</td>
-                <td>61.7</td>
+                <td><b class="best-score-text">GPT-4o 🥉</b></td>
+                <td>35.70</td>
+                <td>29.03</td>
+                <td>58.29</td>
+                <td>55.76</td>
+                <td>28.00</td>
+                <td>25.00</td>
+                <td>47.50</td>
+                <td>22.96</td>
+                <td>71.67</td>
+                <td>61.35</td>
+                <td>55.56</td>
+                <td>54.56</td>
               </tr>
               <tr>
                 <td>4</td>
-                <td><b class="">Virgo-72B</b></td>
-                <td><b>60.8</b></td>
-                <td>79.5</td>
-                <td>49.2</td>
-                <td><b>-2.3</b></td>
-                <td>-1.7</td>
-                <td>-2.9</td>
-                <td><b>75.3</b></td>
-                <td>90.6</td>
-                <td>60.6</td>
+                <td><b class="">GPT-4.1/b></td>
+                  <td>37.83</td>
+                  <td>30.94</td>
+                  <td>61.43</td>
+                  <td>59.26</td>
+                  <td>28.22</td>
+                  <td>23.99</td>
+                  <td>49.38</td>
+                  <td>35.12</td>
+                  <td>73.33</td>
+                  <td>55.47</td>
+                  <td>46.30</td>
+                  <td>46.28</td>
               </tr>
               <tr>
                 <td>5</td>
-                <td><b class="">Qwen2-VL-72B</b></td>
-                <td><b>56.2</b></td>
-                <td>77.3</td>
-                <td>44.2</td>
-                <td><b>-2.1</b></td>
-                <td>-6.5</td>
-                <td>2.4</td>
-                <td><b>96.5</b></td>
-                <td>92.9</td>
-                <td>100.0</td>
+                <td><b class="">LLaMA-3.3-70B</b></td>
+                <td>32.75</td>
+                <td>24.99</td>
+                <td>52.57</td>
+                <td>50.02</td>
+                <td>22.00</td>
+                <td>19.30</td>
+                <td>43.75</td>
+                <td>43.67</td>
+                <td>66.67</td>
+                <td>58.96</td>
+                <td>57.41</td>
+                <td>55.56</td>
               </tr>
               <tr>
                 <td>6</td>
-                <td><b class="">InternVL2.5-78B-MPO</b></td>
-                <td><b>52.7</b></td>
-                <td>73.6</td>
-                <td>41.1</td>
-                <td><b>0.2</b></td>
-                <td>-2.0</td>
-                <td>2.4</td>
-                <td><b>95.3</b></td>
-                <td>90.6</td>
-                <td>100.0</td>
+                <td><b class="">DeepSeek-V3</b></td>
+                <td>37.57</td>
+                <td>30.60</td>
+                <td>57.14</td>
+                <td>54.65</td>
+                <td>27.11</td>
+                <td>21.18</td>
+                <td>50.63</td>
+                <td>39.34</td>
+                <td>76.67</td>
+                <td>49.52</td>
+                <td>24.07</td>
+                <td>22.94</td>
               </tr>
               <tr>
                 <td>7</td>
-                <td><b class="">InternVL2.5-8B-MPO</b></td>
-                <td><b>43.0</b></td>
-                <td>60.4</td>
-                <td>33.4</td>
-                <td><b>0.6</b></td>
-                <td>0.3</td>
-                <td>0.9</td>
-                <td><b>94.7</b></td>
-                <td>89.3</td>
-                <td>100.0</td>
+                <td><b class="">Qwen-2.5-72B</b></td>
+                <td>24.73</td>
+                <td>19.32</td>
+                <td>50.29</td>
+                <td>40.50</td>
+                <td>28.44</td>
+                <td>22.61</td>
+                <td>50.00</td>
+                <td>30.84</td>
+                <td>73.33</td>
+                <td>42.31</td>
+                <td>35.19</td>
+                <td>29.17</td>
               </tr>
               <tr>
                 <td>8</td>
-                <td><b class="">Qwen2-VL-7B</b></td>
-                <td><b>42.1</b></td>
-                <td>61.6</td>
-                <td>32.0</td>
-                <td><b>-4.0</b></td>
-                <td>-3.1</td>
-                <td>-4.8</td>
-                <td><b>94.9</b></td>
-                <td>89.8</td>
-                <td>100.0</td>
+                <td><b class="">Qwen-2.5-32B</b></td>
+                <td>22.46</td>
+                <td>18.76</td>
+                <td>48.86</td>
+                <td>38.57</td>
+                <td>23.11</td>
+                <td>19.87</td>
+                <td>45.63</td>
+                <td>43.50</td>
+                <td>76.67</td>
+                <td>43.40</td>
+                <td>11.11</td>
+                <td>11.11</td>
               </tr>
               <tr>
                 <td>9</td>
-                <td><b class="">InternVL2.5-8B</b></td>
-                <td><b>41.1</b></td>
-                <td>60.0</td>
-                <td>31.3</td>
-                <td><b>-3.0</b></td>
-                <td>-6.8</td>
-                <td>0.9</td>
-                <td><b>98.4</b></td>
-                <td>96.8</td>
-                <td>100.0</td>
+                <td><b class="">Qwen-2.5-7B</b></td>
+                <td>13.77</td>
+                <td>11.53</td>
+                <td>30.86</td>
+                <td>28.08</td>
+                <td>10.67</td>
+                <td>7.37</td>
+                <td>49.38</td>
+                <td>32.38</td>
+                <td>76.67</td>
+                <td>43.40</td>
+                <td>29.63</td>
+                <td>24.36</td>
               </tr>
               <tr>
                 <td>10</td>
-                <td><b class="">MiniCPM-V-2.6</b></td>
-                <td><b>39.8</b></td>
-                <td>57.3</td>
-                <td>30.5</td>
-                <td><b>-3.5</b></td>
-                <td>-4.8</td>
-                <td>-2.2</td>
-                <td><b>92.8</b></td>
-                <td>85.7</td>
-                <td>100.0</td>
+                <td><b class="">GPT-4o-mini</b></td>
+                <td>23.93</td>
+                <td>15.77</td>
+                <td>48.57</td>
+                <td>47.89</td>
+                <td>16.89</td>
+                <td>13.52</td>
+                <td>43.75</td>
+                <td>35.24</td>
+                <td>41.67</td>
+                <td>41.52</td>
+                <td>31.48</td>
+                <td>20.43</td>
               </tr>
               <tr>
                 <td>11</td>
-                <td><b class="">LLaVA-OV-72B</b></td>
-                <td><b>36.3</b></td>
-                <td>57.3</td>
-                <td>26.6</td>
-                <td><b>-0.2</b></td>
-                <td>0.3</td>
-                <td>-0.6</td>
-                <td><b>95.4</b></td>
-                <td>90.8</td>
-                <td>100.0</td>
+                <td><b class="">GPT-4</b></td>
+                <td>35.16</td>
+                <td>29.89</td>
+                <td>53.43</td>
+                <td>43.44</td>
+                <td>21.56</td>
+                <td>17.16</td>
+                <td>1.25</td>
+                <td>1.57</td>
+                <td>0.00</td>
+                <td>0.00</td>
+                <td>0.00</td>
+                <td>0.00</td>
               </tr>
               <tr>
                 <td>12</td>
-                <td><b class="">LLaVA-CoT</b></td>
-                <td><b>34.9</b></td>
-                <td>53.9</td>
-                <td>25.8</td>
-                <td><b>0.4</b></td>
-                <td>1.4</td>
-                <td>-0.6</td>
-                <td><b>94.0</b></td>
-                <td>88.1</td>
-                <td>100.0</td>
-              </tr>
-              <tr>
-                <td>13</td>
-                <td><b class="">LLaVA-OV-7B</b></td>
-                <td><b>30.9</b></td>
-                <td>50.9</td>
-                <td>22.2</td>
-                <td><b>-3.4</b></td>
-                <td>-3.8</td>
-                <td>-3.0</td>
-                <td><b>91.5</b></td>
-                <td>83.0</td>
-                <td>100.0</td>
-              </tr>
-              <tr>
-                <td>14</td>
-                <td><b class="">Mulberry</b></td>
-                <td><b>27.4</b></td>
-                <td>59.1</td>
-                <td>17.8</td>
-                <td><b>3.5</b></td>
-                <td>4.4</td>
-                <td>2.6</td>
-                <td><b>89.5</b></td>
-                <td>79.0</td>
-                <td>100.0</td>
+                <td><b class="">C2S-Pythia</b></td>
+                <td>0.00</td>
+                <td>0.00</td>
+                <td>0.00</td>
+                <td>0.00</td>
+                <td>0.00</td>
+                <td>0.00</td>
+                <td>0.00</td>
+                <td>0.00</td>
+                <td>0.00</td>
+                <td>0.00</td>
+                <td>0.00</td>
+                <td>0.00</td>
               </tr>
             </tbody>
           </table>
