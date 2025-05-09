@@ -280,10 +280,9 @@
           </p>
           <p>
             Through this large-scale empirical assessment, we uncover <b>several key insights</b>:
-            <b>(1)</b> <b>Generalist</b> models perform better than <b>specialist</b> models;
-            <b>(2)</b> LLM performance <b>scales</b> with <b>model size</b>;
-            <b>(3)</b> Current LLMs demonstrate <b>limited understanding of cell biology</b>;
-            <b>(4)</b> Error profiles vary across <b>tasks</b>.
+            <b>(1)</b> <b>Generalist models perform better than specialist models</b>, with DeepSeek-family and GPT-family models demonstrating emergent reasoning capabilities in cell biology, while C2S-Pythia exhibit complete failure across all sub-tasks.;
+            <b>(2)</b> <b>Model performance positively correlates with parameter scale</b>, as evidenced by the Qwen-2.5 series where the performance hierarchy follows model size: 72B > 32B > 7B variants.
+            <b>(3)</b> <b>Current LLMs demonstrate limited understanding of cell biology</b>, particularly in drug response prediction and perturbation analysis tasks where most LLMs fail to surpass random guessing baselines with statistical significance.
           </p>
         </div>
       </div>
@@ -535,7 +534,7 @@
   <div class="hero-body has-text-centered">
     <!-- <h1 class="title is-1 mathvista"><img src="static/images/logo.png" style="width:1.0em;vertical-align: middle" alt="Logo"/>MathVista Dataset</h1> -->
   <h1 class="title is-1 mathvista">
-    <span class="mathvista" style="vertical-align: middle">MME-CoT Dataset</span>
+    <span class="mathvista" style="vertical-align: middle">CellVerse Dataset</span>
   </h1>
   </div>
 </section>
@@ -556,47 +555,32 @@
         <h2 class="title is-3">Overview</h2>
         <div class="content has-text-justified">
           <p>
-            <span class="mathvista">MME-CoT </span>composes <b>6 major domains with 17 subcategories</b>. To facilitate CoT evaluation, we provide key steps annotation and reference image captions for all the reasoning questions. The annotation and reference captions are all human annotated and verified. In addition, we incorporate a variety of perception tasks along with the reasoning tasks in the benchmark for a comprehensive evaluation. In total, MME-CoT contains <b>1,130 questions with 3,865 key step annotation</b>.
+            <span class="mathvista">CellVerse </span>encompasses <b>4 types of single-cell multi-omics data (scRNA-seq, CITE-seq, ASAP-seq, and scATAC-seq data)</b> and spans <b>three hierarchical levels of single-cell analysis tasks: cell type annotation (cell-level), drug response prediction (drug-level), and perturbation alaysis (gene-level)</b>. For cell-level and drug-level tasks, we utilize cell2sentence to convert the original single-cell data into natural languages, while for gene-level tasks, we employ gene regulatory network to capture gene-gene interactions. The datasets statistics are as follows:
+            <br>
+            <b>(1)</b> <b>Cell Type Annotation (CTA):</b> We curate 3 types of single-cell multi-omics data for this task, with 3000 genes and 18 cell types for scRNA-seq data, 17441 genes and 7 cell types for CITE-seq data, and 17441 genes and 9 cell types for ASAP-seq data.
+            <br>
+            <b>(2)</b> <b>Drug Response Prediction (DRP):</b> We incorporate a subset of scRNA-seq data with 18380 genes and 2 responses for this task. 
+            <br>
+            <b>(3)</b> <b>Perturbation Analysis (PA):</b> We utilize a subset of scATAC-seq K562 cells with 5060 genes and divide this task into two sub-tasks: perturbation significance analysis (PSA) and perturbation direction analysis (PDA). Both tasks have 2 perturbation types.
           </p>
-          <p>
-            Unlike the simplistic metrics used in previous studies, MME-CoT introduces a rigorous evaluation framework that delves into the fine-grained CoT process of LMMs, assessing reasoning quality, robustness, and efficiency. Specifically, we address <b>three critical questions</b> as follows: 
-            <br>
-            <b>(1)</b> <b>Quality:</b> Is each intermediate CoT step logically valid and faithful without hallucination? 
-            <br>
-            <b>(2)</b> <b>Robustness:</b> Does CoT interfere with perception tasks, and to what extent does it enhance reasoning tasks? 
-            <br>
-            <b>(3)</b> <b>Efficiency:</b> How can we assess the efficiency of CoT in a long reasoning process? 
-          </p>
+
 
         <div class="box m-5">
           <div class="content has-text-centered">
-            <img src="static/images/overview_mv/image/teaser.jpg" alt="data-overview" style="max-width: 100%;"/>
+            <img src="static/images/intro/fig_illus.png" alt="data-overview" style="max-width: 100%;"/>
+          </div>
+        </div>
+
+        <div class="box m-5">
+          <div class="content has-text-centered">
+            <img src="static/images/intro/data_stat.png" alt="data-overview" style="max-width: 40%;"/>
           </div>
         </div>
 
         </div>
       </div>
     </div>
-    <div class="columns is-centered">
-      <div class="column" style="margin-right: -30rem;">
-        <div class="content has-text-centered">
-          <img src="static/images/data-composition_ms.jpg" alt="data-overview" style="max-width: 70%;"/>
-          <p> 
-            Category and subcategory distribution of reasoning and perception tasks in
-            <span class="mathvista">MME-CoT</span>.<br/>
-          </p> 
-        </div>
-      </div>
-      <div class="column" style="margin-right: -10rem;">
-        <div class="content has-text-centered">
-          <img src="static/images/statistics_ms.jpg" alt="data-overview" style="max-width: 30.7%;"/>
-          <p> 
-            Key statistics of
-            <span class="mathvista">MME-CoT</span>.<br/>
-          </p> 
-        </div>
-      </div>
-    </div>
+ 
 
     <div class="columns is-centered m-6">
       <div class="column is-full has-text-centered content">
