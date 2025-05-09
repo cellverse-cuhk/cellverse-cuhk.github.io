@@ -271,7 +271,7 @@
             <b>(3)</b> <b>Poor Interpretability.</b> Most of the existing data-driven black-box models directly learn the mapping from input (e.g., gene expression) to output (e.g., cell type information), without incorporating interpretable intermediate steps. As a result, users are often unable to understand the rationale behind the model's decisions. To this end, we seek to establish a unified, user-friendly, and interpretable paradigm for single-cell analysis.
           </p>
           <div class="content has-text-centered">
-            <img src="static/images/intro/fig_illus.png" alt="grade-lv" width="95%"/>
+            <img src="static/images/intro/fig_illus.png" alt="grade-lv" width="100%"/>
             <p>An illustration of traditional single-cell analysis and language-centric single-cell analysis.</p>
           </div>
           <p>
@@ -568,12 +568,14 @@
         <div class="box m-5">
           <div class="content has-text-centered">
             <img src="static/images/intro/fig_cellverse.png" alt="data-overview" style="max-width: 100%;"/>
+            <p>An overview of CellVerse.</p>
           </div>
         </div>
 
         <div class="box m-5">
           <div class="content has-text-centered">
             <img src="static/images/intro/data_stat.png" alt="data-overview" style="max-width: 40%;"/>
+            <p>Data statistics information of CellVerse.</p>
           </div>
         </div>
 
@@ -581,43 +583,6 @@
       </div>
     </div>
  
-
-    <div class="columns is-centered m-6">
-      <div class="column is-full has-text-centered content">
-        <h2 class="title is-3">Evaluation Strategy</h2>
- 
-        
-        <div id="results-carousel" class="carousel results-carousel">
-          <div class="box m-5">
-            <div class="content has-text-centered">
-              <img src="static/images/evaluation_mv/quality.jpg" alt="grade-lv" width="97%"/>
-              <p>CoT Quality Evaluation. <b>Recall:</b> Measures the <b>informativeness</b> of reasoning steps;
-                <b>Precision:</b> Evaluates the <b>accuracy</b> of each reasoning step.</p>
-            </div>
-          </div>
-          <div class="box m-5">
-            <div class="content has-text-centered">
-              <img src="static/images/evaluation_mv/robustness.jpg" alt="grade-lv" width="52%"/>
-              <p>CoT Robustness Evaluation. <b>Effectiveness:</b> Measures if CoT <b>interferes</b> with the perception tasks;
-              <b>Efficacy:</b> Evaluates if CoT <b>helps</b> reasoning tasks.</p>
-            </div>
-          </div>
-          <div class="box m-5">
-            <div class="content has-text-centered">
-              <img src="static/images/evaluation_mv/effiency.jpg" alt="grade-lv" width="55%"/>
-              <p>CoT Efficiency Evaluation. <b>Relevance Rate:</b> Quantifies the proportion of relevant reasoning steps;
-                <b>Reflection Quality:</b> Evaluates the model's reflection validity.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-        
-
-      </div>
-    </div>
-    </div>
-
   </div>
 </section>
 
@@ -633,27 +598,68 @@
 
     <div class="columns is-centered m-6">
       <div class="column is-full has-text-centered content">
+        <h2 class="title is-3">Main Results</h2>
+        <div id="results-carousel" class="carousel results-carousel">
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/exp/cite.png" alt="grade-lv" width="80%"/>
+              <p>Performance comparison of specific cell types on CITE-seq data.</p>
+            </div>
+          </div>
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/exp/asap.png" alt="grade-lv" width="80%"/>
+              <p>Performance comparison of specific cell types on ASAP-seq data.</p>
+            </div>
+          </div>
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/exp/precision_ms.png" alt="grade-lv" width="80%"/>
+              <p>Precision score comparison of specific cell types on scRNA-seq data.</p>
+            </div>
+          </div>
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/exp/recall_ms.png" alt="grade-lv" width="80%"/>
+              <p>Recall score comparison of specific cell types on scRNA-seq data.</p>
+            </div>
+          </div>
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/exp/f1_ms.png" alt="grade-lv" width="80%"/>
+              <p>F1 score comparison of specific cell types on scRNA-seq data.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="columns is-centered m-6">
+      <div class="column is-full has-text-centered content">
         <h2 class="title is-3">Error Analysis</h2>
         <div id="results-carousel" class="carousel results-carousel">
           <div class="box m-5">
             <div class="content has-text-centered">
-              <img src="static/images/result_analysis/error_example.jpg" alt="grade-lv" width="80%"/>
-              <p>Examples of reflection errors.</p>
+              <img src="static/images/exp/error_deepseek_r1.png" alt="grade-lv" width="80%"/>
+              <p>Distribution of DeepSeek-R1's errors within distinct types across various tasks.</p>
             </div>
           </div>
           <div class="box m-5">
             <div class="content has-text-centered">
-              <img src="static/images/result_analysis/error_analysis.jpg" alt="grade-lv" width="40%"/>
-              <p>Distribution of reflection error types of QVQ-72B.</p>
+              <img src="static/images/exp/error_gpt_4.1.png" alt="grade-lv" width="80%"/>
+              <p>Distribution of GPT-4.1's errors within distinct types across various tasks.</p>
+            </div>
+          </div>          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/exp/error_gpt_4o.png" alt="grade-lv" width="80%"/>
+              <p>Distribution of GPT-4o's errors within distinct types across various tasks.</p>
             </div>
           </div>
-          
         </div>
-          
-
       </div>
     </div>
 
+    <!--
     <div class="columns is-centered m-6">
       <div class="column is-full has-text-centered content">
         <h2 class="title is-3">Visualization Examples</h2>
@@ -728,7 +734,7 @@
         </div>
       </div>
     </div>
-
+    -->
   </div>
 </section>
 
@@ -777,7 +783,7 @@
       <div class="column is-8">
         <div class="content">
           <p>
-            This website is adapted from <a href="https://mathverse-cuhk.github.io/">MathVerse</a> and <a href="https://nerfies.github.io/">Nerfies</a>, licensed under a <a rel="license"
+            This website is adapted from <a href="https://mmecot.github.io/">MME-COT</a>, <a href="https://mathverse-cuhk.github.io/">MathVerse</a> and <a href="https://nerfies.github.io/">Nerfies</a>, licensed under a <a rel="license"
                                                 href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
             Commons Attribution-ShareAlike 4.0 International License</a>.
           </p>
